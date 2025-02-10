@@ -51,7 +51,7 @@ body {
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
     color: var(--primary-color);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -69,7 +69,7 @@ body {
     text-decoration: none;
     color: var(--text-color);
     transition: all 0.3s ease;
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
     opacity: 0.8;
 }
 
@@ -151,46 +151,56 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
 }
 
 .ascii-art {
     font-family: monospace;
     white-space: pre;
     color: var(--primary-color);
-    line-height: 1.2;
-    font-size: 12px;
+    line-height: 1;
+    font-size: clamp(0.35vw, min(1.2vw, 1.2vh), 1.5vw);
     text-shadow: 0 0 3px rgba(0, 255, 0, 0.5);
     margin: 0;
     padding: 0;
     text-align: center;
+    transform-origin: center;
+    transform: scale(0.9);
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
 }
 
 .second-ascii-art {
     font-family: monospace;
     white-space: pre;
     color: var(--text-color);
-    line-height: 1.2;
-    font-size: 14px;
+    line-height: 1;
+    font-size: clamp(0.4vw, min(1.4vw, 1.4vh), 1.8vw);
     text-shadow: 0 0 3px rgba(0, 255, 0, 0.5);
-    margin: 3rem auto;
+    margin: 1rem auto;
     text-align: center;
     max-width: 100%;
-    overflow-x: auto;
+    transform-origin: center;
+    transform: scale(0.9);
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
 }
 
 .tagline {
-    font-size: 1rem;
+    font-size: clamp(0.7rem, min(2vw, 2vh), 1rem);
     color: var(--text-color);
     text-align: center;
-    line-height: 1.8;
+    line-height: 1.4;
     letter-spacing: 0.5px;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 /* Services Section */
 .section-title {
     text-align: center;
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 3vw, 2rem);
     margin-bottom: 2rem;
     color: var(--primary-color);
     text-transform: uppercase;
@@ -230,20 +240,23 @@ main {
     border-color: var(--accent-color);
 }
 
-.service-emoji {
-    font-size: 3rem;
+.service-icon {
     margin-bottom: 1.5rem;
-    filter: drop-shadow(0 0 5px var(--primary-color));
+}
+
+.service-icon i {
+    font-size: 3rem;
+    color: var(--primary-color);
     transition: all 0.3s ease;
 }
 
-.service-card:hover .service-emoji {
+.service-card:hover .service-icon i {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 10px var(--primary-color));
+    text-shadow: 0 0 10px var(--primary-color);
 }
 
 .service-card h3 {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     margin-bottom: 1rem;
     color: var(--primary-color);
     text-transform: uppercase;
@@ -251,7 +264,7 @@ main {
 }
 
 .service-card p {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     color: var(--text-color);
     line-height: 1.6;
     opacity: 0.8;
@@ -284,12 +297,12 @@ main {
 }
 
 .skill-card i {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     color: var(--primary-color);
 }
 
 .skill-card span {
-    font-size: 0.9rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
     color: var(--text-color);
 }
 
@@ -312,7 +325,7 @@ main {
 }
 
 .about-content p {
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     line-height: 1.8;
     color: var(--text-color);
     opacity: 0.9;
@@ -414,7 +427,7 @@ main {
     gap: 2rem;
     background-color: var(--dark-bg);
     z-index: 1000;
-    height: 45px;
+    height: 35px;
 }
 
 .footer a {
@@ -422,6 +435,11 @@ main {
     text-decoration: none;
     font-size: 1.5rem;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-bottom: 5px;
 }
 
 .footer a:hover {
@@ -521,6 +539,41 @@ main {
     text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
 }
 
+/* Responsive Design */
+@media screen and (orientation: portrait) {
+    .header {
+        display: none;
+    }
+
+    .content-wrapper {
+        padding-top: 20px;
+    }
+
+    .container {
+        height: calc(100vh - 55px);
+        border-width: 2px;
+    }
+
+    .custom-cursor,
+    .cursor-cross,
+    .cursor-coordinates {
+        display: none !important;
+    }
+
+    * {
+        cursor: auto !important;
+    }
+
+    .footer {
+        padding: 0;
+    }
+
+    .footer a {
+        padding-bottom: 0;
+        padding-top: 3px;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -543,6 +596,72 @@ main {
     }
 }
 
+@media screen and (max-height: 600px), screen and (max-width: 400px) {
+    .ascii-art {
+        transform: scale(0.7);
+        margin: -1rem 0;
+    }
+
+    .second-ascii-art {
+        transform: scale(0.7);
+        margin: 0 auto;
+    }
+
+    .tagline {
+        font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+        line-height: 1.2;
+        margin-top: 0.3rem;
+    }
+
+    .section-title {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .content-wrapper {
+        padding-top: 40px;
+    }
+
+    .container {
+        height: calc(100vh - 75px);
+    }
+
+    .skills-grid {
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .skill-card {
+        padding: 0.5rem;
+        min-width: calc(33.33% - 0.5rem);
+    }
+}
+
+@media screen and (max-height: 400px) {
+    .ascii-art {
+        transform: scale(0.5);
+        margin: -2rem 0;
+    }
+
+    .second-ascii-art {
+        display: none;
+    }
+
+    .tagline {
+        font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+        line-height: 1.1;
+        margin-top: 0.2rem;
+    }
+
+    .content-wrapper {
+        padding-top: 35px;
+    }
+
+    .container {
+        height: calc(100vh - 70px);
+    }
+}
+
 p {
     color: var(--text-color);
     font-family: var(--font-hacker);
@@ -550,17 +669,20 @@ p {
     letter-spacing: 0.5px;
 }
 
+/* Hide scrollbar but keep functionality */
 .container::-webkit-scrollbar {
     width: 0;
     background: transparent;
 }
 
+/* Styles globaux */
 :root {
     --primary-color: #00ff00;
     --background-color: #000000;
     --text-color: #ffffff;
 }
 
+/* Style de sélection */
 ::selection {
     background-color: var(--primary-color);
     color: var(--background-color);
